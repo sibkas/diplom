@@ -24,12 +24,12 @@ public class AboutTest extends BaseTest {
 
     @Before
     public void initIntents() {
-        Intents.init(); // Инициализируем перехват Intent-ов
+        Intents.init(); //
     }
 
     @After
     public void releaseIntents() {
-        Intents.release(); // Обязательно закрываем
+        Intents.release();
     }
 
     @Test
