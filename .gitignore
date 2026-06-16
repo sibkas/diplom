@@ -1,0 +1,23 @@
+# Временные файлы ОС
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Gradle
+.gradle/
+build/
+app/build/
+
+# Android Studio / IDE
+.idea/
+.vscode/
+*.iml
+local.properties
+.gradle/
+
+# Секреты и ключи
+*.jks
+*.keystore
+
+# Логи
+*.log
