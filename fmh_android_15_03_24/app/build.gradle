@@ -114,5 +114,6 @@ dependencies {
     androidTestImplementation "io.qameta.allure:allure-kotlin-commons:2.4.0"
     testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
     testImplementation("io.qameta.allure:allure-junit4")
+    androidTestImplementation 'org.awaitility:awaitility:4.2.0'
 }
 

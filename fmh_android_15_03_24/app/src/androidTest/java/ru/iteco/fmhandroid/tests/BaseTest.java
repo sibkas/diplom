@@ -5,6 +5,10 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import static org.awaitility.Awaitility.await;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -69,38 +73,11 @@ public class BaseTest {
     }
 
     public static void waitForElement(Matcher<View> matcher, long timeout) {
-        long endTime = System.currentTimeMillis() + timeout;
-        while (System.currentTimeMillis() < endTime) {
-            try {
-
-                onView(matcher).check(matches(isDisplayed()));
-                return;
-            } catch (Throwable e) {
-
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ignored) {
-                }
-            }
-        }
-
-        onView(matcher).check(matches(isDisplayed()));
+        await().atMost(timeout, SECONDS).untilAsserted(() ->
+                onView(matcher).check(matches(isDisplayed()))
+        );
     }
 
-    public static void waitForSplashScreenToDisappear() {
-
-        long endTime = System.currentTimeMillis() + 15000;
-        while (System.currentTimeMillis() < endTime) {
-            try {
-
-                onView(withId(R.id.splash_screen_circular_progress_indicator)).check(matches(isDisplayed()));
-                Thread.sleep(500);
-            } catch (Throwable e) {
-
-                return;
-            }
-        }
-    }
 
     @After
     public void tearDown() {
